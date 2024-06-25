@@ -1,0 +1,39 @@
+# Create a GitHub action to email a report from a file at 6 a.m. daily
+name: Email Report
+
+on:
+  schedule:
+    - cron: '0 6 * * *'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Check out code
+      uses: actions/checkout@v2
+
+    - name: Email report
+      uses: dawidd6/action-send-mail@v2
+      with:
+        server_address: smtp.gmail.com
+        server_port: 587
+        username: ${{ secrets.EMAIL }}
+        password: ${{ secrets.PASSWORD }}
+        subject: Report
+        body: Report for today
+        to: ${{ secrets.EMAIL }}
+        attachments: report.txt
+ 
+ In this example, the action sends an email with the subject “Report” and the body “Report for today” to the email address specified in the  EMAIL  secret. The action also attaches the  report.txt  file to the email. 
+ Conclusion 
+ GitHub Actions are a powerful tool for automating tasks in your repositories. You can use them to automate workflows, deploy applications, and more. 
+ In this tutorial, you learned how to create a GitHub Action that sends an email with a file attachment. You also learned how to use the  dawidd6/action-send-mail  action to send an email in a GitHub Action workflow. 
+ If you’re interested in learning more about GitHub Actions, check out our other articles on  GitHub Actions. 
+ Join our DigitalOcean community of over a million developers for free! Get help and share knowledge in our Questions & Answers section, find tutorials and tools that will help you grow as a developer and scale your project or business, and subscribe to topics of interest. 
+ GitHub Actions is a CI/CD service that allows you to automate your workflow. In this tutorial, you'll create a GitHub Action that sends an email with a file attachment. You'll use the dawidd6/action-send-mail action to send an email in a GitHub Action workflow. 
+ I have a question about the username and password. I have my own email and password, but I don’t know what the username should be. 
+ I have the same question. 
+ The username should be your email address and the password should be the password for that email address. 
+ I have tried to use this action but I get the following error: 
+ Error: connect ETIMEDOUT
